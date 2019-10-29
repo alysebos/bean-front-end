@@ -11,6 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { AboutBeanComponent } from './about-bean/about-bean.component';
+import { AddPetComponent } from './add-pet/add-pet.component';
+import { PetDetailComponent } from './pet-detail/pet-detail.component';
+import { AddCheckupComponent } from './add-checkup/add-checkup.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { AboutBeanComponent } from './about-bean/about-bean.component';
     RegisterComponent,
     LoginComponent,
     DashboardComponent,
-    AboutBeanComponent
+    AboutBeanComponent,
+    AddPetComponent,
+    PetDetailComponent,
+    AddCheckupComponent
   ],
   imports: [
     BrowserModule,

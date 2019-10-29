@@ -10,6 +10,7 @@ import { ServerService } from './server.service';
 })
 export class AppComponent implements OnInit{
   title = 'bean-front-end';
+  firstName: string;
 
   constructor (
     private authService: AuthService,
@@ -22,6 +23,18 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit () {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('authentication', `${localStorage.getItem('authToken')}`)
+
+    this.server.request('GET', '/users', headers)
+      .subscribe(
+        (user: any) => {
+          if (user) {
+            this.firstName = user.firstName;
+          }
+        }
+      );
   }
 
 }

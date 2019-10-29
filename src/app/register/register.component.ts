@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ServerService } from '../server.service';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   form: FormGroup;
+  message: string;
 
   constructor(
     private fb: FormBuilder,
@@ -41,7 +43,6 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     console.log('Submitting');
-    console.log(this.form);
     if (!this.form.valid) {
       console.log('Form not valid. Please check that fields are correctly filled in');
       return;
@@ -54,9 +55,17 @@ export class RegisterComponent implements OnInit {
       password: this.form.get('password').value
     });
 
-    request.subscribe(() => {
+    request
+    .subscribe(() => {
       this.router.navigate(['/login']);
-    })
+      },
+      error => {
+        this.handleError(error);
+      })
+  }
+
+  handleError (error) {
+    this.message = error.error.message;
   }
 
 }

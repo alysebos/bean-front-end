@@ -1,4 +1,7 @@
 <div class="container text-center">
+    <div class="alert alert-danger" *ngIf="message">
+        Error: {{ message }}
+    </div>
     <form [formGroup]="form"
         (ngSubmit)="onSubmit()">
         <h2>Sign Up</h2>

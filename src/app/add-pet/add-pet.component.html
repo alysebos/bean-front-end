@@ -1,0 +1,94 @@
+
+<div class="container text-center">
+        <p class="text-left"><a routerLink="/dashboard"><i class="fa fa-chevron-left"></i> Return to the dashboard</a></p>
+    <form [formGroup]="form"
+        (ngSubmit)="onSubmit()">
+        <h2>Add a New Pet</h2>
+        <p>Please enter your pet's details</p>
+
+        <div class="form-group">
+            <label for="name">Name
+                <div class="my-alerts"
+                    *ngIf="name.invalid && name.touched">
+                    <p *ngIf="name.errors.required">Name is required</p>
+                </div>
+                <input type="text"
+                    placeholder="name"
+                    formControlName="name"
+                    id="name"
+                    class="form-control"
+                    [class.invalid-input]="name.errors && name.touched"
+                    required>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="species">Species
+                <div class="my-alerts"
+                    *ngIf="species.invalid && species.touched">
+                    <p *ngIf="species.errors.required">Species is required</p>
+                </div>
+                <input type="text"
+                    placeholder="species"
+                    formControlName="species"
+                    id="species"
+                    class="form-control"
+                    [class.invalid-input]="species.errors && species.touched"
+                    required>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="breed">Breed
+                <div class="my-alerts"
+                    *ngIf="breed.invalid && breed.touched">
+                    <p *ngIf="breed.errors.required">Breed is required</p>
+                </div>
+                <input type="text"
+                    placeholder="breed"
+                    formControlName="breed"
+                    id="breed"
+                    class="form-control"
+                    [class.invalid-input]="breed.errors && breed.touched"
+                    required>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="weightUnits">What weight unit do you use to weigh {{ name.value ? name.value : 'your pet' }}?
+                <div class="my-alerts"
+                    *ngIf="weightUnits.invalid && weightUnits.touched">
+                    <p *ngIf="weightUnits.errors.required">Weight Units is required</p>
+                </div>
+                <select formControlName="weightUnits"
+                    id="weightUnits"
+                    class="form-control"
+                    [class.invalid-input]="weightUnits.errors && weightUnits.touched"
+                    required>
+                    <option></option>
+                    <option value="Pounds">Pounds</option>
+                    <option value="Ounces">Ounces</option>
+                    <option value="Grams">Grams</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="birthDate">What is {{ name.value ? name.value : 'your pet' }}'s birth date?
+                <div class="my-alerts"
+                    *ngIf="birthDate.invalid && birthDate.touched">
+                    <p *ngIf="birthDate.errors.required">Birth date is required</p>
+                </div>
+                <input type="date"
+                    formControlName="birthDate"
+                    id="birthDate"
+                    class="form-control"
+                    [class.invalid-input]="birthDate.errors && birthDate.touched"
+                    required>
+            </label>
+        </div>
+
+        <button class="btn btn-primary"
+            [disabled]="form.invalid">Add Pet</button>
+    </form>
+</div>

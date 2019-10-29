@@ -1,0 +1,57 @@
+
+<div class="container" *ngIf="pet">
+    <p><a routerLink="/dashboard"><i class="fa fa-chevron-left"></i> Return to the dashboard</a></p>
+    <h2>{{ pet.name }} the {{ pet.breed }} {{ pet.species }}</h2>
+
+    <p>Birthdate: {{ pet.birthDate | date:'longDate' }}</p>
+
+    <div *ngIf="checkups && checkups.length > 0">
+
+    </div>
+
+    <div *ngIf="checkups && checkups.length === 0">
+        <div class="card">
+            <div class="card-body">
+                <p>You currently have no checkups for this pet!</p>
+                <p><a routerLink="/addcheckup/{{ pet._id }}"><i class="fa fa-plus"></i> Add a new checkup</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="checkups && checkups.length > 0">
+        <p><a routerLink="/addcheckup/{{ pet._id }}"><i class="fa fa-plus"></i> Add a New Checkup</a></p>
+
+        <ul class="list-group">
+            <li *ngFor="let checkup of checkups"
+                class="list-group-item"
+                [class.vet-checkup]="checkup.vet"
+                (click)="linkToCheckup(checkup._id)">
+                <div class="vet-checkup-text" *ngIf="checkup.vet">
+                    This checkup was performed by a veterinarian.
+                </div>
+                <div class="row">
+                    <div class="col text-left"><i class="fa fa-calendar"></i> {{ checkup.date | date:'shortDate' }}</div>
+                    <div class="col text-right"></div> {{ getWeight(checkup) }} {{ pet.weightUnits }}
+                </div>
+                <div class="alert alert-info" *ngIf="getHighlights(checkup.nonPhysical).length > 0 || getHighlights(checkup.physical).length > 0">
+                    {{ getHighlights(checkup.nonPhysical) }}
+                    {{ getHighlights(checkup.physical) }}
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p><a routerLink="/editpet/{{ pet._id }}">
+                <i class="fa fa-pencil"></i> Edit {{ pet.name }}
+            </a></p>
+        </div>
+        <div class="col text-right">
+            <p><a routerLink="/deletepet/{{ pet._id }}">
+                <i class="fa fa-times"></i> Delete {{ pet.name }}
+            </a></p>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,31 @@
+
+input {
+    width: 50%;
+    min-width: 300px;
+    max-width: 600px;
+}
+
+.text-center {
+    margin-top: 35px;
+}
+
+.my-alerts {
+    font-size: 12px;
+    color: darkred;
+    width: 50%;
+    min-width: 300px;
+    max-width: 600px;
+}
+
+.invalid-input {
+    border-color: darkred;
+}
+
+.alert-info {
+    font-size: 14px;
+}
+
+.card {
+    margin: 35px auto;
+    padding: 10px;
+}

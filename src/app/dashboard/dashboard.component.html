@@ -2,17 +2,24 @@
 <div class="container">
     <h2>Dashboard</h2>
 
-    <div class="row">
-        <div class="col">
-            Currently logged in as {{ firstName }}. <a (click)="onLogout()" href="#">Not you? Log out.</a>
-        </div>
+    <p *ngIf="pets.length > 0">
+        Here you can see an overview of your {{ pets.length === 1 ? 'pet' : pets.length + ' pets' }}. Click their name to view their detail page.
+    </p>
+
+    <div *ngIf="pets.length > 0">
+        <h3>Your Pets</h3>
+        <ul class="list-group">
+            <li *ngFor="let pet of pets" class="list-group-item"><a routerLink="/pets/{{ pet._id }}">{{ pet.name }}</a> the {{ pet.breed }} {{ pet.species }}</li>
+        </ul>
+
+        <a routerLink="/addpet"><i class="fa fa-plus"></i> Add another pet</a>
     </div>
 
     <div *ngIf="pets.length === 0">
         <div class="card">
             <div class="card-body">
                 <p>You currently have no pets registered!</p>
-                <p><a routerLink="/addpet">Add a new pet</a></p>
+                <p><a routerLink="/addpet"><i class="fa fa-plus"></i> Add a new pet</a></p>
             </div>
         </div>
     </div>

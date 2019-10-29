@@ -1,0 +1,14 @@
+
+.vet-checkup {
+    background-color: #CFC;
+}
+
+.vet-checkup-text {
+    font-size: 12px;
+    text-align: center;
+    font-style: italic;
+}
+
+.list-group-item {
+    cursor: pointer;
+}

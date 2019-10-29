@@ -9,8 +9,6 @@ import { AppComponent } from '../app.component';
 })
 
 export class DashboardComponent implements OnInit {
-  firstName: string;
-  email: string;
   pets = [];
 
   constructor(
@@ -22,23 +20,11 @@ export class DashboardComponent implements OnInit {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('authentication', `${localStorage.getItem('authToken')}`)
-
-    this.server.request('GET', '/users', headers)
-      .subscribe(
-        (user: any) => {
-          if (user) {
-            this.firstName = user.firstName;
-            this.email = user.email;
-          }
-        }
-      );
-    
     this.server.request('GET', '/pets', headers)
         .subscribe(
           (pets: any) => {
             if (pets) {
               this.pets = pets.pets;
-              console.log(pets.pets);
             }
           }
         );
