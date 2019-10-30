@@ -26,16 +26,19 @@
                 class="list-group-item"
                 [class.vet-checkup]="checkup.vet"
                 (click)="linkToCheckup(checkup._id)">
-                <div class="vet-checkup-text" *ngIf="checkup.vet">
+                <div class="sub-text" *ngIf="checkup.vet">
                     This checkup was performed by a veterinarian.
                 </div>
                 <div class="row">
                     <div class="col text-left"><i class="fa fa-calendar"></i> {{ checkup.date | date:'shortDate' }}</div>
-                    <div class="col text-right"></div> {{ getWeight(checkup) }} {{ pet.weightUnits }}
+                    <div class="col text-right"></div> {{ checkup.weight }} {{ pet.weightUnits }}
                 </div>
-                <div class="alert alert-info" *ngIf="getHighlights(checkup.nonPhysical).length > 0 || getHighlights(checkup.physical).length > 0">
-                    {{ getHighlights(checkup.nonPhysical) }}
-                    {{ getHighlights(checkup.physical) }}
+                <div class="sub-text">
+                    Health attributes recorded on this checkup:
+                </div>
+                <div class="text-center">
+                    <span class="badge badge-info"
+                        *ngFor="let attribute of getAttributes(checkup)">{{ attribute }}</span>
                 </div>
             </li>
         </ul>

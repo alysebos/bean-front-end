@@ -40,30 +40,50 @@ export class PetDetailComponent implements OnInit {
       );
   }
 
-  getHighlights (array) {
-    let highlights = [];
-    for (let i = 0; i < array.length; i++) {
-      if (Object.keys(array[i]).length > 1) {
-        for (let j = 0; j < Object.keys(array[i]).length; j++) {
-          if (Object.keys(array[i])[j] !== "_id") {
-            let key = Object.keys(array[i])[j];
-            if(array[i][key].highlight) {
-              highlights.push(`${array[i][key].value}`);
-            };
-          }
-        }
-      };
-    }
-    return highlights;
-  }
-
-  getWeight (checkup) {
-    let weight: number;
-    for (let i = 0; i < checkup.physical.length; i++) {
-      if ('weight' in checkup.physical[i]) {
-        return checkup.physical[i].weight.value;
+  getAttributes (checkup) {
+    let recordedAttributes = [];
+    let allAttributes = Object.keys(checkup);
+    for (let i = 0; i < allAttributes.length; i++) {
+      if (allAttributes[i] === '_id' || 
+        allAttributes[i] === 'date' || 
+        allAttributes[i] === 'vet' || 
+        allAttributes[i] === 'pet' || 
+        allAttributes[i] === 'weight' || 
+        allAttributes[i] === 'owner' || 
+        allAttributes[i] === '__v') {
+      }
+      else if (checkup[allAttributes[i]].length > 0) {
+        recordedAttributes.push(allAttributes[i]);
       }
     }
+    for (let i = 0; i < recordedAttributes.length; i++) {
+      let attribute = recordedAttributes[i];
+      recordedAttributes[i] = this.renameMap[attribute];
+    }
+    return recordedAttributes;
+  }
+
+  renameMap = {
+    weight: 'Weight',
+    temperature: 'Temperature',
+    pulse: 'Pulse',
+    respiration: 'Respiration',
+    abdomen: 'Abdomen',
+    legs: 'Legs',
+    feet: 'Feet',
+    joints: 'Joints',
+    genitals: 'Genitals',
+    anus: 'Anus',
+    ears: 'Ears',
+    eyes: 'Eyes',
+    mouth: 'Mouth',
+    coat: 'Coat',
+    waste: 'Waste',
+    claws: 'Claws',
+    temperament: 'Temperament',
+    diet: 'Diet',
+    wasteHabits: 'Waste Habits',
+    energyLevel: 'Energy Level'
   }
 
   linkToCheckup(id) {

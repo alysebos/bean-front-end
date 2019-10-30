@@ -35,7 +35,7 @@
                     value="true">
                 <label for="vet"
                     class="form-check-label">
-                    Check here if this checkup was performed by a vet
+                    Check here if this checkup was performed by a veterinarian
                 </label>
             </div>
         </div>
@@ -53,6 +53,7 @@
                     [class.invalid-input]="weight.errors && weight.touched">
             </label>
         </div>
+        {{ date.value }}
 
         <h5>Please check all the health attributes you'd like to record data about, and proceed below</h5>
         <div class="row">
@@ -313,860 +314,217 @@
             </div>
         </div>
 
-        <div *ngIf="temperatureInput.value" class="card">
-            <h4>Record Temperature Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="temperature">Temperature
-                            <input type="text"
-                                placeholder="Example: 90 F"
-                                formControlName="temperature"
-                                id="temperature"
-                                class="form-control">
-                        </label>
-                    </div>
+        <ul class="list-group">
+            <li class="list-group-item" *ngIf="temperatureInput.value">
+                <div class="form-group">
+                    <label for="temperature">Temperature
+                        <input type="text"
+                            placeholder="Example: 90 F"
+                            formControlName="temperature"
+                            id="temperature"
+                            class="form-control">
+                    </label>
                 </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="temperatureRemark">Temperature Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="temperatureRemark"
-                                id="temperatureRemark"
-                                class="form-control">
-                        </label>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="pulseInput.value">
+                <div class="form-group">
+                    <label for="pulse">Pulse
+                        <input type="text"
+                            placeholder="Example: 125 BPM"
+                            formControlName="pulse"
+                            id="pulse"
+                            class="form-control">
+                    </label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="temperatureHighlight"
-                                id="temperatureHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="temperatureHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="respirationInput.value">
+                <div class="form-group">
+                    <label for="respiration">Respiration
+                        <input type="text"
+                            placeholder="Example: Wheezy"
+                            formControlName="respiration"
+                            id="respiration"
+                            class="form-control">
+                    </label>
                 </div>
-            </div>
-        </div>
-
-        <div *ngIf="pulseInput.value" class="card">
-            <h4>Record Pulse Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="pulse">Pulse
-                            <input type="text"
-                                placeholder="Example: 125 BPM"
-                                formControlName="pulse"
-                                id="pulse"
-                                class="form-control">
-                        </label>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="abdomenInput.value">
+                <div class="form-group">
+                    <label for="abdomen">Abdomen
+                        <input type="text"
+                            placeholder="Example: Distended"
+                            formControlName="abdomen"
+                            id="abdomen"
+                            class="form-control">
+                    </label>
                 </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="pulseRemark">Pulse Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="pulseRemark"
-                                id="pulseRemark"
-                                class="form-control">
-                        </label>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="legsInput.value">
+                <div class="form-group">
+                    <label for="legs">Legs
+                        <input type="text"
+                            placeholder="90 F"
+                            formControlName="legs"
+                            id="legs"
+                            class="form-control">
+                    </label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="pulseHighlight"
-                                id="pulseHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="pulseHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="feetInput.value">
+                <div class="form-group">
+                    <label for="feet">Feet
+                        <input type="text"
+                            placeholder="Example: Tender paw pads"
+                            formControlName="feet"
+                            id="feet"
+                            class="form-control">
+                    </label>
                 </div>
-            </div>
-        </div>
-
-        <div *ngIf="respirationInput.value" class="card">
-            <h4>Record Respiration Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="respiration">Respiration
-                            <input type="text"
-                                placeholder="Example: Wheezy"
-                                formControlName="respiration"
-                                id="respiration"
-                                class="form-control">
-                        </label>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="jointsInput.value">
+                <div class="form-group">
+                    <label for="joints">Joints
+                        <input type="text"
+                            placeholder="Example: Limited mobility in knees"
+                            formControlName="joints"
+                            id="joints"
+                            class="form-control">
+                    </label>
                 </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="respirationRemark">Respiration Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="respirationRemark"
-                                id="respirationRemark"
-                                class="form-control">
-                        </label>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="genitalsInput.value">
+                <div class="form-group">
+                    <label for="genitals">Genitals
+                        <input type="text"
+                            placeholder="Example: Discharge"
+                            formControlName="genitals"
+                            id="genitals"
+                            class="form-control">
+                    </label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="respirationHighlight"
-                                id="respirationHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="respirationHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="anusInput.value">
+                <div class="form-group">
+                    <label for="anus">Anus
+                        <input type="text"
+                            placeholder="Example: Swelling"
+                            formControlName="anus"
+                            id="anus"
+                            class="form-control">
+                    </label>
                 </div>
-            </div>
-        </div>
-
-        <div *ngIf="abdomenInput.value" class="card">
-            <h4>Record Abdomen Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="abdomen">Abdomen
-                            <input type="text"
-                                placeholder="Example: Distended"
-                                formControlName="abdomen"
-                                id="abdomen"
-                                class="form-control">
-                        </label>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="earsInput.value">
+                <div class="form-group">
+                    <label for="ears">Ears
+                        <input type="text"
+                            placeholder="Example: Flea bites"
+                            formControlName="ears"
+                            id="ears"
+                            class="form-control">
+                    </label>
                 </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="abdomenRemark">Abdomen Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="abdomenRemark"
-                                id="abdomenRemark"
-                                class="form-control">
-                        </label>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="eyesInput.value">
+                <div class="form-group">
+                    <label for="eyes">Eyes
+                        <input type="text"
+                            placeholder="Example: Cloudiness in right eye"
+                            formControlName="eyes"
+                            id="eyes"
+                            class="form-control">
+                    </label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="abdomenHighlight"
-                                id="abdomenHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="abdomenHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="mouthInput.value">
+                <div class="form-group">
+                    <label for="mouth">Mouth
+                        <input type="text"
+                            placeholder="Example: Plaque on teeth"
+                            formControlName="mouth"
+                            id="mouth"
+                            class="form-control">
+                    </label>
                 </div>
-            </div>
-        </div>
-
-        <div *ngIf="legsInput.value" class="card">
-            <h4>Record Legs Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="legs">Legs
-                            <input type="text"
-                                placeholder="Example: Wound on front left leg"
-                                formControlName="legs"
-                                id="legs"
-                                class="form-control">
-                        </label>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="coatInput.value">
+                <div class="form-group">
+                    <label for="coat">Coat
+                        <input type="text"
+                            placeholder="Example: Matted"
+                            formControlName="coat"
+                            id="coat"
+                            class="form-control">
+                    </label>
                 </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="legsRemark">Legs Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="legsRemark"
-                                id="legsRemark"
-                                class="form-control">
-                        </label>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="wasteInput.value">
+                <div class="form-group">
+                    <label for="waste">Waste
+                        <input type="text"
+                            placeholder="Example: Urine discolored"
+                            formControlName="waste"
+                            id="waste"
+                            class="form-control">
+                    </label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="legsHighlight"
-                                id="legsHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="legsHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="clawsInput.value">
+                <div class="form-group">
+                    <label for="claws">Claws
+                        <input type="text"
+                            placeholder="Example: Trimmed today"
+                            formControlName="claws"
+                            id="claws"
+                            class="form-control">
+                    </label>
                 </div>
-            </div>
-        </div>
-
-        <div *ngIf="feetInput.value" class="card">
-            <h4>Record Feet Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="feet">Feet
-                            <input type="text"
-                                placeholder="Example: Raw paw pads"
-                                formControlName="feet"
-                                id="feet"
-                                class="form-control">
-                        </label>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="temperamentInput.value">
+                <div class="form-group">
+                    <label for="temperament">Temperament
+                        <input type="text"
+                            placeholder="Example: More anxious than usual"
+                            formControlName="temperament"
+                            id="temperament"
+                            class="form-control">
+                    </label>
                 </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="feetRemark">Feet Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="feetRemark"
-                                id="feetRemark"
-                                class="form-control">
-                        </label>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="dietInput.value">
+                <div class="form-group">
+                    <label for="diet">Diet
+                        <input type="text"
+                            placeholder="Example: Eating around certain food"
+                            formControlName="diet"
+                            id="diet"
+                            class="form-control">
+                    </label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="feetHighlight"
-                                id="feetHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="feetHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="wasteHabitsInput.value">
+                <div class="form-group">
+                    <label for="wasteHabits">Waste Habits
+                        <input type="text"
+                            placeholder="Example: Going outside litter box"
+                            formControlName="wasteHabits"
+                            id="wasteHabits"
+                            class="form-control">
+                    </label>
                 </div>
-            </div>
-        </div>
-
-        <div *ngIf="jointsInput.value" class="card">
-            <h4>Record Joints Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="joints">Joints
-                            <input type="text"
-                                placeholder="Example: Limited mobility on back right knee"
-                                formControlName="joints"
-                                id="joints"
-                                class="form-control">
-                        </label>
-                    </div>
+            </li>
+            <li class="list-group-item" *ngIf="energyLevelInput.value">
+                <div class="form-group">
+                    <label for="energyLevel">Energy Level
+                        <input type="text"
+                            placeholder="Example: Midnight bursts of energy"
+                            formControlName="energyLevel"
+                            id="energyLevel"
+                            class="form-control">
+                    </label>
                 </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="jointsRemark">Joints Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="jointsRemark"
-                                id="jointsRemark"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="jointsHighlight"
-                                id="jointsHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="jointsHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="genitalsInput.value" class="card">
-            <h4>Record Genitals Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="genitals">Genitals
-                            <input type="text"
-                                placeholder="Example: Discharge"
-                                formControlName="genitals"
-                                id="genitals"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="genitalsRemark">Genitals Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="genitalsRemark"
-                                id="genitalsRemark"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="genitalsHighlight"
-                                id="genitalsHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="genitalsHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="anusInput.value" class="card">
-            <h4>Record Anus Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="anus">Anus
-                            <input type="text"
-                                placeholder="Example: Tear"
-                                formControlName="anus"
-                                id="anus"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="anusRemark">Anus Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="anusRemark"
-                                id="anusRemark"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="anusHighlight"
-                                id="anusHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="anusHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="earsInput.value" class="card">
-            <h4>Record Ears Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="ears">Ears
-                            <input type="text"
-                                placeholder="Example: Flea bites"
-                                formControlName="ears"
-                                id="ears"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="earsRemark">Ears Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="earsRemark"
-                                id="earsRemark"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="earsHighlight"
-                                id="earsHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="earsHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="eyesInput.value" class="card">
-            <h4>Record Eyes Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="eyes">Eyes
-                            <input type="text"
-                                placeholder="Example: Cloudiness in right eye"
-                                formControlName="eyes"
-                                id="eyes"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="eyesRemark">Eyes Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="eyesRemark"
-                                id="eyesRemark"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="eyesHighlight"
-                                id="eyesHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="eyesHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="mouthInput.value" class="card">
-            <h4>Record Mouth Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="mouth">Mouth
-                            <input type="text"
-                                placeholder="Example: Plaque on teeth"
-                                formControlName="mouth"
-                                id="mouth"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="mouthRemark">Mouth Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="mouthRemark"
-                                id="mouthRemark"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="mouthHighlight"
-                                id="mouthHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="mouthHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="coatInput.value" class="card">
-            <h4>Record Coat Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="coat">Coat
-                            <input type="text"
-                                placeholder="Example: Matted"
-                                formControlName="coat"
-                                id="coat"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="coatRemark">Coat Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="coatRemark"
-                                id="coatRemark"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="coatHighlight"
-                                id="coatHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="coatHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="wasteInput.value" class="card">
-            <h4>Record Waste Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="waste">Waste
-                            <input type="text"
-                                placeholder="Example: Runny"
-                                formControlName="waste"
-                                id="waste"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="wasteRemark">Waste Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="wasteRemark"
-                                id="wasteRemark"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="wasteHighlight"
-                                id="wasteHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="wasteHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="clawsInput.value" class="card">
-            <h4>Record Claws Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="claws">Claws
-                            <input type="text"
-                                placeholder="Example: Overgrown"
-                                formControlName="claws"
-                                id="claws"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="clawsRemark">Claws Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="clawsRemark"
-                                id="clawsRemark"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="clawsHighlight"
-                                id="clawsHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="clawsHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="temperamentInput.value" class="card">
-            <h4>Record Temperament Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="temperament">Temperament
-                            <input type="text"
-                                placeholder="Example: Aggression towards other animals"
-                                formControlName="temperament"
-                                id="temperament"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="temperamentRemark">Temperament Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="temperamentRemark"
-                                id="temperamentRemark"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="temperamentHighlight"
-                                id="temperamentHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="temperamentHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="dietInput.value" class="card">
-            <h4>Record Diet Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="diet">Diet
-                            <input type="text"
-                                placeholder="Example: Switching to grain-free diet"
-                                formControlName="diet"
-                                id="diet"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="dietRemark">Diet Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="dietRemark"
-                                id="dietRemark"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="dietHighlight"
-                                id="dietHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="dietHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="wasteHabitsInput.value" class="card">
-            <h4>Record Waste Habits Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="wasteHabits">Waste Habits
-                            <input type="text"
-                                placeholder="Example: Refusal to use litter box"
-                                formControlName="wasteHabits"
-                                id="wasteHabits"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="wasteHabitsRemark">Waste Habits Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="wasteHabitsRemark"
-                                id="wasteHabitsRemark"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="wasteHabitsHighlight"
-                                id="wasteHabitsHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="wasteHabitsHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="energyLevelInput.value" class="card">
-            <h4>Record Energy Level Data</h4>
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="energyLevel">Energy Level
-                            <input type="text"
-                                placeholder="Example: Exercising more than normal"
-                                formControlName="energyLevel"
-                                id="energyLevel"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="energyLevelRemark">Energy Level Remarks
-                            <input type="text"
-                                placeholder="Example: Improvement, alarming, etc"
-                                formControlName="energyLevelRemark"
-                                id="energyLevelRemark"
-                                class="form-control">
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        <div class="form-check">
-                            <input type="checkbox"
-                                formControlName="energyLevelHighlight"
-                                id="energyLevelHighlight"
-                                class="form-check-input"
-                                value="true">
-                            <label for="energyLevelHighlight"
-                                class="form-check-label">
-                                Check to highlight this attribute so it appears on the pet detail page
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            </li>
+        </ul>
 
         <div class="card">
             <div class="form-group">
