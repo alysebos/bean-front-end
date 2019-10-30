@@ -115,7 +115,6 @@ export class AddCheckupComponent implements OnInit {
     let correctDateMonth = correctDate[1];
     let correctDateDay = correctDate[2];
     let submitDate = new Date(correctDateYear, correctDateMonth, correctDateDay);
-    console.log(submitDate);
 
     let requestObject = {
       date: this.date.value,

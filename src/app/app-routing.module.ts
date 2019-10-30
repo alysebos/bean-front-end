@@ -7,6 +7,7 @@ import { AuthGuard } from './auth-guard.service';
 import { AddPetComponent } from './add-pet/add-pet.component';
 import { PetDetailComponent } from './pet-detail/pet-detail.component';
 import { AddCheckupComponent } from './add-checkup/add-checkup.component';
+import { CheckupDetailComponent } from './checkup-detail/checkup-detail.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'addpet', component: AddPetComponent, canActivate: [AuthGuard] },
   { path: 'pets/:id', component: PetDetailComponent, canActivate: [AuthGuard] },
-  { path: 'addcheckup/:id', component: AddCheckupComponent, canActivate: [AuthGuard] }
+  { path: 'addcheckup/:id', component: AddCheckupComponent, canActivate: [AuthGuard] },
+  { path: 'checkup/:id', component: CheckupDetailComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

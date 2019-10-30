@@ -14,6 +14,8 @@ import { AboutBeanComponent } from './about-bean/about-bean.component';
 import { AddPetComponent } from './add-pet/add-pet.component';
 import { PetDetailComponent } from './pet-detail/pet-detail.component';
 import { AddCheckupComponent } from './add-checkup/add-checkup.component';
+import { CheckupDetailComponent } from './checkup-detail/checkup-detail.component';
+import { CheckupAttributesService } from './checkup-attributes.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { AddCheckupComponent } from './add-checkup/add-checkup.component';
     AboutBeanComponent,
     AddPetComponent,
     PetDetailComponent,
-    AddCheckupComponent
+    AddCheckupComponent,
+    CheckupDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { AddCheckupComponent } from './add-checkup/add-checkup.component';
   ],
   providers: [
     AuthService,
-    AuthGuard
+    AuthGuard,
+    CheckupAttributesService
   ],
   bootstrap: [AppComponent]
 })

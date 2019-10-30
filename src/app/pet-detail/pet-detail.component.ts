@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pet } from '../pet';
+import { CheckupAttributesService } from '../checkup-attributes.service';
 
 @Component({
   selector: 'app-pet-detail',
@@ -11,12 +12,14 @@ import { Pet } from '../pet';
 export class PetDetailComponent implements OnInit {
   pet: Pet;
   petId: string = this.route.snapshot.params['id'];
-  checkups = [];
+  checkups: any[];
+  deleteWarning = false;
 
   constructor(
     private server: ServerService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public cas: CheckupAttributesService
   ) { }
 
   ngOnInit() {
@@ -48,54 +51,22 @@ export class PetDetailComponent implements OnInit {
       );
   }
 
-  getAttributes (checkup) {
-    let recordedAttributes = [];
-    let allAttributes = Object.keys(checkup);
-    for (let i = 0; i < allAttributes.length; i++) {
-      if (allAttributes[i] === '_id' || 
-        allAttributes[i] === 'date' || 
-        allAttributes[i] === 'vet' || 
-        allAttributes[i] === 'pet' || 
-        allAttributes[i] === 'weight' || 
-        allAttributes[i] === 'owner' || 
-        allAttributes[i] === '__v') {
-      }
-      else if (checkup[allAttributes[i]].length > 0) {
-        recordedAttributes.push(allAttributes[i]);
-      }
-    }
-    for (let i = 0; i < recordedAttributes.length; i++) {
-      let attribute = recordedAttributes[i];
-      recordedAttributes[i] = this.renameMap[attribute];
-    }
-    return recordedAttributes;
-  }
-
-  renameMap = {
-    weight: 'Weight',
-    temperature: 'Temperature',
-    pulse: 'Pulse',
-    respiration: 'Respiration',
-    abdomen: 'Abdomen',
-    legs: 'Legs',
-    feet: 'Feet',
-    joints: 'Joints',
-    genitals: 'Genitals',
-    anus: 'Anus',
-    ears: 'Ears',
-    eyes: 'Eyes',
-    mouth: 'Mouth',
-    coat: 'Coat',
-    waste: 'Waste',
-    claws: 'Claws',
-    temperament: 'Temperament',
-    diet: 'Diet',
-    wasteHabits: 'Waste Habits',
-    energyLevel: 'Energy Level'
-  }
-
   linkToCheckup(id) {
     this.router.navigateByUrl(`/checkup/${id}`);
+  }
+
+  onDeleteAttempt() {
+    this.deleteWarning = true;
+  }
+
+  onDelete() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('authentication', `${localStorage.getItem('authToken')}`);
+    this.server.request('DELETE', `/pets/${this.pet._id}`, headers)
+      .subscribe(res => {
+        this.router.navigateByUrl('/dashboard');
+      })
   }
 
 }

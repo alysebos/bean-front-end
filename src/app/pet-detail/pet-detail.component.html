@@ -5,10 +5,6 @@
 
     <p>Birthdate: {{ pet.birthDate | date:'longDate' }}</p>
 
-    <div *ngIf="checkups && checkups.length > 0">
-
-    </div>
-
     <div *ngIf="checkups && checkups.length === 0">
         <div class="card">
             <div class="card-body">
@@ -26,34 +22,37 @@
                 class="list-group-item"
                 [class.vet-checkup]="checkup.vet"
                 (click)="linkToCheckup(checkup._id)">
-                <div class="sub-text" *ngIf="checkup.vet">
-                    This checkup was performed by a veterinarian.
-                </div>
                 <div class="row">
                     <div class="col text-left"><i class="fa fa-calendar"></i> {{ checkup.date | date:'shortDate' }}</div>
                     <div class="col text-right"></div> {{ checkup.weight }} {{ pet.weightUnits }}
                 </div>
-                <div class="sub-text">
+                <div class="sub-text" *ngIf="checkup.vet">
+                    This checkup was performed by a veterinarian.
+                </div>
+                <div class="sub-text" *ngIf="cas.getAttributes(checkup).length > 0">
                     Health attributes recorded on this checkup:
                 </div>
                 <div class="text-center">
                     <span class="badge badge-info"
-                        *ngFor="let attribute of getAttributes(checkup)">{{ attribute }}</span>
+                        *ngFor="let attribute of cas.getAttributes(checkup)">{{ attribute }}</span>
                 </div>
             </li>
         </ul>
     </div>
 
-    <div class="row">
+    <div class="row edit-delete">
         <div class="col">
-            <p><a routerLink="/editpet/{{ pet._id }}">
+            <button class="btn btn-primary" routerLink="/editpet/{{ pet._id }}" disabled="true">
                 <i class="fa fa-pencil"></i> Edit {{ pet.name }}
-            </a></p>
+            </button>
         </div>
         <div class="col text-right">
-            <p><a routerLink="/deletepet/{{ pet._id }}">
+            <button class="btn btn-primary" (click)="onDeleteAttempt()" *ngIf="!deleteWarning">
                 <i class="fa fa-times"></i> Delete {{ pet.name }}
-            </a></p>
+            </button>
+            <button class="btn btn-danger" (click)="onDelete()" *ngIf="deleteWarning">
+                <i class="fa fa-times"></i> Click to Confirm
+            </button>
         </div>
     </div>
 

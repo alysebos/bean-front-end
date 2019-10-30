@@ -1,0 +1,54 @@
+
+<div class="container" *ngIf="pet && checkup">
+    <p><a routerLink="/pets/{{ pet._id }}"><i class="fa fa-chevron-left"></i> Return to {{ pet.name }}'s detail page</a></p>
+    <h2>{{ pet.name }}'s {{ checkup.date | date:'shortDate' }} Checkup</h2>
+
+    <div class="alert alert-info" *ngIf="checkup.vet"><i class="fa fa-exclamation-circle"></i>&nbsp;This checkup was performed by a veterinarian.</div>
+
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-sm-4 bg-info text-light">
+                <div class="card-body">
+                    Weight
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="card-body">
+                    {{ checkup.weight }} {{ pet.weightUnits }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3"
+        *ngFor="let attribute of attributesRecorded">
+        <div class="row no-gutters">
+            <div class="col-sm-4 bg-info text-light">
+                <div class="card-body">
+                    {{ cas.renameMap[attribute] }}
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="card-body">
+                    {{ checkup[attribute] }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row edit-delete">
+        <div class="col">
+            <button class="btn btn-primary" routerLink="/editcheckup/{{ checkup._id }}" disabled="true">
+                <i class="fa fa-pencil"></i> Edit Checkup
+            </button>
+        </div>
+        <div class="col text-right">
+            <button class="btn btn-primary" (click)="onDeleteAttempt()" *ngIf="!deleteWarning">
+                <i class="fa fa-times"></i> Delete Checkup
+            </button>
+            <button class="btn btn-danger" (click)="onDelete()" *ngIf="deleteWarning">
+                <i class="fa fa-times"></i> Click to Confirm
+            </button>
+        </div>
+    </div>
+</div>

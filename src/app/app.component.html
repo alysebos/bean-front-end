@@ -1,27 +1,12 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <a class="navbar-brand" routerLink="/"><i class="fa fa-paw"></i> Bean</a>
-  <button 
-    class="navbar-toggler" 
-    type="button" 
-    data-toggle="collapse" 
-    data-target="#navbarSupportedContent" 
-    aria-controls="navbarSupportedContent" 
-    aria-expanded="false" 
-    aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto" *ngIf="server.isLoggedIn">
-      <li class="nav-item"><span class="nav-link disabled">Welcome back, {{ firstName }}</span></li>
-      <li class="nav-item">
-        <a routerLink="/dashboard" class="nav-link foat-right">Dashboard</a>
-      </li>
-      <li class="nav-item">
-        <a (click)="onLogout()" class="nav-link float-right">Logout</a>
-      </li>
-    </ul>
-  </div>
+  <ul class="navbar-nav ml-auto" *ngIf="server.isLoggedIn">
+    <li class="nav-item"><span class="nav-link disabled float-right">Welcome back, {{ firstName }}</span></li>
+    <li class="nav-item">
+      <a (click)="onLogout()" class="nav-link float-right">Logout</a>
+    </li>
+  </ul>
 </nav>
 
 <router-outlet></router-outlet>

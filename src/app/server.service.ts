@@ -28,6 +28,9 @@ export class ServerService {
     if (method === 'GET') {
       return this.get(route, data);
     }
+    if (method === 'DELETE') {
+      return this.delete(route, data);
+    }
 
     const header = (this.loggedIn) ? { Authorization: `Bearer ${this.authToken}` } : undefined;
 
@@ -50,6 +53,23 @@ export class ServerService {
     }
 
     return this.http.get(baseUrl + route, {
+      responseType: 'json',
+      headers: header,
+      params
+    });
+  }
+
+  delete(route: string, data?: any) {
+    const header = (this.loggedIn) ? { Authorization: `Bearer ${this.authToken}` } : undefined;
+
+    let params = new HttpParams();
+    if (data !== undefined) {
+      Object.getOwnPropertyNames(data).forEach(key => {
+        params = params.set(key, data[key]);
+      });
+    }
+
+    return this.http.delete(baseUrl + route, {
       responseType: 'json',
       headers: header,
       params

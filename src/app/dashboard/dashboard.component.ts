@@ -9,7 +9,7 @@ import { AppComponent } from '../app.component';
 })
 
 export class DashboardComponent implements OnInit {
-  pets = [];
+  pets: any[];
 
   constructor(
     private server: ServerService,
