@@ -27,14 +27,16 @@ export class AppComponent implements OnInit{
     headers.append('Content-Type', 'application/json');
     headers.append('authentication', `${localStorage.getItem('authToken')}`)
 
-    this.server.request('GET', '/users', headers)
-      .subscribe(
-        (user: any) => {
-          if (user) {
-            this.firstName = user.firstName;
+    if (this.server.isLoggedIn) {
+      this.server.request('GET', '/users', headers)
+        .subscribe(
+          (user: any) => {
+            if (user) {
+              this.firstName = user.firstName;
+            }
           }
-        }
-      );
+        );
+    }
   }
 
 }
