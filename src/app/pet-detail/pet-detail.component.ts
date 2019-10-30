@@ -25,7 +25,11 @@ export class PetDetailComponent implements OnInit {
     headers.append('authentication', `${localStorage.getItem('authToken')}`)
     this.server.request('GET', `/pets/${this.petId}`, headers)
       .subscribe(
-        (pet: Pet) => { this.pet = pet }
+        (pet: Pet) => { 
+          this.pet = pet;
+          let doo = new Date(this.pet.birthDate);
+          this.pet.birthDate = new Date( doo.getTime() - doo.getTimezoneOffset() * -60000 );
+        }
       );
     this.server.request('GET', `/checkups/${this.petId}`, headers)
       .subscribe(
@@ -36,6 +40,10 @@ export class PetDetailComponent implements OnInit {
             b = new Date(b.date);
             return a > b ? -1 : a < b ? 1 : 0;
           });
+          for (let i = 0; i < this.checkups.length; i++) {
+            let doo = new Date(this.checkups[i].date);
+            this.checkups[i].date = new Date( doo.getTime() - doo.getTimezoneOffset() * -60000 );
+          }
         }
       );
   }

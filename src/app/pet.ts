@@ -3,7 +3,7 @@ export interface Pet {
 	name: string,
 	species: string,
 	breed: string,
-	birthDate: string,
+	birthDate: Date,
 	weightUnits: string,
 	owner: string
 }
