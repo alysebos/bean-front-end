@@ -13,7 +13,7 @@
         </div>
 
         <div class="form-group">
-            <label for="date">Date of Health Check
+            <label for="date">Date of Health Check (required)
                 <div class="my-alerts"
                     *ngIf="date.invalid && date.touched">
                     <p *ngIf="date.errors.required">Date of Health Check is required</p>
@@ -23,6 +23,20 @@
                     id="date"
                     class="form-control"
                     [class.invalid-input]="date.errors && date.touched">
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="weight">{{ pet.name }}'s Weight in {{ pet.weightUnits }} (required)
+                <div class="my-alerts"
+                    *ngIf="weight.invalid && weight.touched">
+                    <p *ngIf="weight.errors.required">At the bare minimum, please record {{ pet.name }}'s weight.</p>
+                </div>
+                <input type="number"
+                    formControlName="weight"
+                    id="weight"
+                    class="form-control"
+                    [class.invalid-input]="weight.errors && weight.touched">
             </label>
         </div>
         
@@ -40,21 +54,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label for="weight">{{ pet.name }}'s Weight in {{ pet.weightUnits }}
-                <div class="my-alerts"
-                    *ngIf="weight.invalid && weight.touched">
-                    <p *ngIf="weight.errors.required">At the bare minimum, please record {{ pet.name }}'s weight.</p>
-                </div>
-                <input type="number"
-                    formControlName="weight"
-                    id="weight"
-                    class="form-control"
-                    [class.invalid-input]="weight.errors && weight.touched">
-            </label>
-        </div>
-
-        <h5>Please check all the health attributes you'd like to record data about, and proceed below</h5>
+        <h6>Please check all the health attributes you'd like to record data about, and proceed below. All fields below are optional.</h6>
         <div class="row">
             <div class="col text-left">
                 <div class="form-group">

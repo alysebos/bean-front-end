@@ -26,7 +26,8 @@ export class AddCheckupComponent implements OnInit {
     private fb: FormBuilder
   ) { }
 
-  ngOnInit() {let headers = new Headers();
+  ngOnInit() {
+    let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('authentication', `${localStorage.getItem('authToken')}`)
     this.server.request('GET', `/pets/${this.petId}`, headers)
@@ -101,6 +102,15 @@ export class AddCheckupComponent implements OnInit {
   get wasteHabitsInput() { return this.form.get('wasteHabitsInput') };
   get energyLevelInput() { return this.form.get('energyLevelInput') };
 
+
+  findValue(key) {
+    let inputValue = key + 'Input';
+    if (this[inputValue].value) {
+      return this.form.get(key).value;
+    }
+    return '';
+  }
+
   onSubmit() {
     console.log('Submitting');
     if (!this.form.valid) {
@@ -121,25 +131,25 @@ export class AddCheckupComponent implements OnInit {
       vet: this.vet.value,
       pet: this.petId,
       weight: this.form.get('weight').value,
-      temperature: this.form.get('temperature').value,
-      pulse: this.form.get('pulse').value,
-      respiration: this.form.get('respiration').value,
-      abdomen: this.form.get('abdomen').value,
-      legs: this.form.get('legs').value,
-      feet: this.form.get('feet').value,
-      joints: this.form.get('joints').value,
-      genitals: this.form.get('genitals').value,
-      anus: this.form.get('anus').value,
-      ears: this.form.get('ears').value,
-      eyes: this.form.get('eyes').value,
-      mouth: this.form.get('mouth').value,
-      coat: this.form.get('coat').value,
-      waste: this.form.get('waste').value,
-      claws: this.form.get('claws').value,
-      temperament: this.form.get('temperament').value,
-      diet: this.form.get('diet').value,
-      wasteHabits: this.form.get('wasteHabits').value,
-      energyLevel: this.form.get('energyLevel').value,
+      temperature: this.findValue('temperature'),
+      pulse: this.findValue('pulse'),
+      respiration: this.findValue('respiration'),
+      abdomen: this.findValue('abdomen'),
+      legs: this.findValue('legs'),
+      feet: this.findValue('feet'),
+      joints: this.findValue('joints'),
+      genitals: this.findValue('genitals'),
+      anus: this.findValue('anus'),
+      ears: this.findValue('ears'),
+      eyes: this.findValue('eyes'),
+      mouth: this.findValue('mouth'),
+      coat: this.findValue('coat'),
+      waste: this.findValue('waste'),
+      claws: this.findValue('claws'),
+      temperament: this.findValue('temperament'),
+      diet: this.findValue('diet'),
+      wasteHabits: this.findValue('wasteHabits'),
+      energyLevel: this.findValue('energyLevel'),
       miscNotes: this.form.get('miscNotes').value
     };
     const request = this.server.request('POST', '/checkups', requestObject);

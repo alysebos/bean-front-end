@@ -1,1 +1,539 @@
-<p>edit-checkup works!</p>
+
+<div class="container text-center" *ngIf="pet">
+        <p class="text-left"><a routerLink="/checkup/{{ checkup._id }}"><i class="fa fa-chevron-left"></i> Return to checkup detail page</a></p>
+        <form [formGroup]="form"
+            (ngSubmit)="onSubmit()">
+            <h2>Edit {{ pet.name }}'s {{ formattedDate | date:'shortDate' }} Checkup</h2>
+            <p>Please update your checkup details</p>
+    
+            <div class="form-group">
+                <label for="date">Date of Health Check (required)
+                    <div class="my-alerts"
+                        *ngIf="date.invalid && date.touched">
+                        <p *ngIf="date.errors.required">Date of Health Check is required</p>
+                    </div>
+                    <input type="date"
+                        formControlName="date"
+                        id="date"
+                        class="form-control"
+                        [class.invalid-input]="date.errors && date.touched">
+                </label>
+            </div>
+    
+            <div class="form-group">
+                <label for="weight">{{ pet.name }}'s Weight in {{ pet.weightUnits }} (required)
+                    <div class="my-alerts"
+                        *ngIf="weight.invalid && weight.touched">
+                        <p *ngIf="weight.errors.required">At the bare minimum, please record {{ pet.name }}'s weight.</p>
+                    </div>
+                    <input type="number"
+                        formControlName="weight"
+                        id="weight"
+                        class="form-control"
+                        [class.invalid-input]="weight.errors && weight.touched">
+                </label>
+            </div>
+            
+            <div class="form-group">
+                <div class="form-check">
+                    <input type="checkbox"
+                        formControlName="vet"
+                        id="vet"
+                        class="form-check-input"
+                        value="true">
+                    <label for="vet"
+                        class="form-check-label">
+                        Check here if this checkup was performed by a veterinarian
+                    </label>
+                </div>
+            </div>
+    
+            <h6>Please check all the health attributes you'd like to record data about, and proceed below. All fields below are optional.</h6>
+            <div class="row">
+                <div class="col text-left">
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="temperatureInput"
+                                id="temperatureInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="temperatureInput"
+                                class="form-check-label">
+                                Temperature
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="pulseInput"
+                                id="pulseInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="pulseInput"
+                                class="form-check-label">
+                                Pulse
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="respirationInput"
+                                id="respirationInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="respirationInput"
+                                class="form-check-label">
+                                Respiration
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="abdomenInput"
+                                id="abdomenInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="abdomenInput"
+                                class="form-check-label">
+                                Abdomen
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="legsInput"
+                                id="legsInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="legsInput"
+                                class="form-check-label">
+                                Legs
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="feetInput"
+                                id="feetInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="feetInput"
+                                class="form-check-label">
+                                Feet
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="jointsInput"
+                                id="jointsInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="jointsInput"
+                                class="form-check-label">
+                                Joints
+                            </label>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col text-left">
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="genitalsInput"
+                                id="genitalsInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="genitalsInput"
+                                class="form-check-label">
+                                Genitals
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="anusInput"
+                                id="anusInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="anusInput"
+                                class="form-check-label">
+                                Anus
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="earsInput"
+                                id="earsInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="earsInput"
+                                class="form-check-label">
+                                Ears
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="eyesInput"
+                                id="eyesInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="eyesInput"
+                                class="form-check-label">
+                                Eyes
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="mouthInput"
+                                id="mouthInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="mouthInput"
+                                class="form-check-label">
+                                Mouth
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="coatInput"
+                                id="coatInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="coatInput"
+                                class="form-check-label">
+                                Coat
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="wasteInput"
+                                id="wasteInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="wasteInput"
+                                class="form-check-label">
+                                Waste
+                            </label>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col text-left">
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="clawsInput"
+                                id="clawsInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="clawsInput"
+                                class="form-check-label">
+                                Claws
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="temperamentInput"
+                                id="temperamentInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="temperamentInput"
+                                class="form-check-label">
+                                Temperament
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="dietInput"
+                                id="dietInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="dietInput"
+                                class="form-check-label">
+                                Diet
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="wasteHabitsInput"
+                                id="wasteHabitsInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="wasteHabitsInput"
+                                class="form-check-label">
+                                Waste Habits
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox"
+                                formControlName="energyLevelInput"
+                                id="energyLevelInput"
+                                class="form-check-input"
+                                value="true">
+                            <label for="energyLevelInput"
+                                class="form-check-label">
+                                Energy Level
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <ul class="list-group">
+                <li class="list-group-item" *ngIf="temperatureInput.value">
+                    <div class="form-group">
+                        <label for="temperature">Temperature
+                            <input type="text"
+                                placeholder="Example: 90 F"
+                                formControlName="temperature"
+                                id="temperature"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="pulseInput.value">
+                    <div class="form-group">
+                        <label for="pulse">Pulse
+                            <input type="text"
+                                placeholder="Example: 125 BPM"
+                                formControlName="pulse"
+                                id="pulse"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="respirationInput.value">
+                    <div class="form-group">
+                        <label for="respiration">Respiration
+                            <input type="text"
+                                placeholder="Example: Wheezy"
+                                formControlName="respiration"
+                                id="respiration"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="abdomenInput.value">
+                    <div class="form-group">
+                        <label for="abdomen">Abdomen
+                            <input type="text"
+                                placeholder="Example: Distended"
+                                formControlName="abdomen"
+                                id="abdomen"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="legsInput.value">
+                    <div class="form-group">
+                        <label for="legs">Legs
+                            <input type="text"
+                                placeholder="90 F"
+                                formControlName="legs"
+                                id="legs"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="feetInput.value">
+                    <div class="form-group">
+                        <label for="feet">Feet
+                            <input type="text"
+                                placeholder="Example: Tender paw pads"
+                                formControlName="feet"
+                                id="feet"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="jointsInput.value">
+                    <div class="form-group">
+                        <label for="joints">Joints
+                            <input type="text"
+                                placeholder="Example: Limited mobility in knees"
+                                formControlName="joints"
+                                id="joints"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="genitalsInput.value">
+                    <div class="form-group">
+                        <label for="genitals">Genitals
+                            <input type="text"
+                                placeholder="Example: Discharge"
+                                formControlName="genitals"
+                                id="genitals"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="anusInput.value">
+                    <div class="form-group">
+                        <label for="anus">Anus
+                            <input type="text"
+                                placeholder="Example: Swelling"
+                                formControlName="anus"
+                                id="anus"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="earsInput.value">
+                    <div class="form-group">
+                        <label for="ears">Ears
+                            <input type="text"
+                                placeholder="Example: Flea bites"
+                                formControlName="ears"
+                                id="ears"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="eyesInput.value">
+                    <div class="form-group">
+                        <label for="eyes">Eyes
+                            <input type="text"
+                                placeholder="Example: Cloudiness in right eye"
+                                formControlName="eyes"
+                                id="eyes"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="mouthInput.value">
+                    <div class="form-group">
+                        <label for="mouth">Mouth
+                            <input type="text"
+                                placeholder="Example: Plaque on teeth"
+                                formControlName="mouth"
+                                id="mouth"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="coatInput.value">
+                    <div class="form-group">
+                        <label for="coat">Coat
+                            <input type="text"
+                                placeholder="Example: Matted"
+                                formControlName="coat"
+                                id="coat"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="wasteInput.value">
+                    <div class="form-group">
+                        <label for="waste">Waste
+                            <input type="text"
+                                placeholder="Example: Urine discolored"
+                                formControlName="waste"
+                                id="waste"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="clawsInput.value">
+                    <div class="form-group">
+                        <label for="claws">Claws
+                            <input type="text"
+                                placeholder="Example: Trimmed today"
+                                formControlName="claws"
+                                id="claws"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="temperamentInput.value">
+                    <div class="form-group">
+                        <label for="temperament">Temperament
+                            <input type="text"
+                                placeholder="Example: More anxious than usual"
+                                formControlName="temperament"
+                                id="temperament"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="dietInput.value">
+                    <div class="form-group">
+                        <label for="diet">Diet
+                            <input type="text"
+                                placeholder="Example: Eating around certain food"
+                                formControlName="diet"
+                                id="diet"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="wasteHabitsInput.value">
+                    <div class="form-group">
+                        <label for="wasteHabits">Waste Habits
+                            <input type="text"
+                                placeholder="Example: Going outside litter box"
+                                formControlName="wasteHabits"
+                                id="wasteHabits"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item" *ngIf="energyLevelInput.value">
+                    <div class="form-group">
+                        <label for="energyLevel">Energy Level
+                            <input type="text"
+                                placeholder="Example: Midnight bursts of energy"
+                                formControlName="energyLevel"
+                                id="energyLevel"
+                                class="form-control">
+                        </label>
+                    </div>
+                </li>
+            </ul>
+    
+            <div class="card">
+                <div class="form-group">
+                    <label for="miscNotes">Miscellaneous Notes About this Checkup
+                        <textarea
+                            placeholder="Example: Overall healthy, just watch for decreased appetite"
+                            formControlName="miscNotes"
+                            id="miscNotes"
+                            class="form-control"></textarea>
+                    </label>
+                </div>
+            </div>
+    
+            <button class="btn btn-primary"
+                [disabled]="form.invalid">Submit Changes</button>
+        </form>
+    
+    
+    </div>
