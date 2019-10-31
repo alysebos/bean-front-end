@@ -55,7 +55,7 @@ export class AddPetComponent implements OnInit {
 
     request
       .subscribe(() => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/dashboard']);
         },
         error => {
           this.handleError(error);

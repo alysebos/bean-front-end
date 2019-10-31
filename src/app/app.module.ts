@@ -16,6 +16,8 @@ import { PetDetailComponent } from './pet-detail/pet-detail.component';
 import { AddCheckupComponent } from './add-checkup/add-checkup.component';
 import { CheckupDetailComponent } from './checkup-detail/checkup-detail.component';
 import { CheckupAttributesService } from './checkup-attributes.service';
+import { EditPetComponent } from './edit-pet/edit-pet.component';
+import { EditCheckupComponent } from './edit-checkup/edit-checkup.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { CheckupAttributesService } from './checkup-attributes.service';
     AddPetComponent,
     PetDetailComponent,
     AddCheckupComponent,
-    CheckupDetailComponent
+    CheckupDetailComponent,
+    EditPetComponent,
+    EditCheckupComponent
   ],
   imports: [
     BrowserModule,

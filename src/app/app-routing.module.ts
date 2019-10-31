@@ -8,6 +8,8 @@ import { AddPetComponent } from './add-pet/add-pet.component';
 import { PetDetailComponent } from './pet-detail/pet-detail.component';
 import { AddCheckupComponent } from './add-checkup/add-checkup.component';
 import { CheckupDetailComponent } from './checkup-detail/checkup-detail.component';
+import { EditCheckupComponent } from './edit-checkup/edit-checkup.component';
+import { EditPetComponent } from './edit-pet/edit-pet.component';
 
 
 const routes: Routes = [
@@ -18,7 +20,9 @@ const routes: Routes = [
   { path: 'addpet', component: AddPetComponent, canActivate: [AuthGuard] },
   { path: 'pets/:id', component: PetDetailComponent, canActivate: [AuthGuard] },
   { path: 'addcheckup/:id', component: AddCheckupComponent, canActivate: [AuthGuard] },
-  { path: 'checkup/:id', component: CheckupDetailComponent, canActivate: [AuthGuard] }
+  { path: 'checkup/:id', component: CheckupDetailComponent, canActivate: [AuthGuard] },
+  { path: 'editcheckup/:id', component: EditCheckupComponent, canActivate: [AuthGuard] },
+  { path: 'editpet/:id', component: EditPetComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

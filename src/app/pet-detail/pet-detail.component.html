@@ -20,7 +20,6 @@
         <ul class="list-group">
             <li *ngFor="let checkup of checkups"
                 class="list-group-item"
-                [class.vet-checkup]="checkup.vet"
                 (click)="linkToCheckup(checkup._id)">
                 <div class="row">
                     <div class="col text-left"><i class="fa fa-calendar"></i> {{ checkup.date | date:'shortDate' }}</div>
@@ -33,8 +32,8 @@
                     Health attributes recorded on this checkup:
                 </div>
                 <div class="text-center">
-                    <span class="badge badge-info"
-                        *ngFor="let attribute of cas.getAttributes(checkup)">{{ attribute }}</span>
+                    <p style="font-size:125%"><span class="badge badge-info"
+                        *ngFor="let attribute of cas.getAttributes(checkup)">{{ attribute }}</span></p>
                 </div>
             </li>
         </ul>
@@ -42,7 +41,7 @@
 
     <div class="row edit-delete">
         <div class="col">
-            <button class="btn btn-primary" routerLink="/editpet/{{ pet._id }}" disabled="true">
+            <button class="btn btn-primary" routerLink="/editpet/{{ pet._id }}">
                 <i class="fa fa-pencil"></i> Edit {{ pet.name }}
             </button>
         </div>
