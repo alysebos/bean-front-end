@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService,
+    public authService: AuthService,
     public server: ServerService,
     private router: Router
   ) { }
@@ -41,18 +41,12 @@ export class LoginComponent implements OnInit {
   async onSubmit() {
     this.loginInvalid = false;
     if (this.form.valid) {
-      try {
-        this.authService.login(this.form.value);
-        // TO DO: Find a better way to display the credentials error;
-        // Currently, it shows even if the login is valid while it waits for the reroute.
-        // The timeout is a temporary patch.
-        setTimeout(() => {this.formSubmitAttempt = true}, 500);
-      } catch (err) {
+      this.authService.login(this.form.value)
+      if (this.authService.isInvalidLogin) {
         this.loginInvalid = true;
       }
-    } else {
-      this.formSubmitAttempt = true;
     }
+    this.loginInvalid = true;
   }
 
 }

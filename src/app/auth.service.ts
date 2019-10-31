@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ServerService } from './server.service';
 
@@ -9,6 +7,7 @@ import { ServerService } from './server.service';
 export class AuthService {
   private loggedIn: boolean;
   private authToken: string;
+  private invalidLogin: boolean = false;
 
   constructor(
     private router: Router,
@@ -25,6 +24,7 @@ export class AuthService {
   }
 
   login(user) {
+    this.invalidLogin = false;
     if (user.email !== '' && user.password !== '') {
       return this.server.request('POST', '/auth/login', {
         email: user.email,
@@ -43,6 +43,7 @@ export class AuthService {
       },
       error => {
         this.loggedIn = false;
+        this.invalidLogin = true;
       });
     }
   }
@@ -54,4 +55,6 @@ export class AuthService {
     localStorage.clear();
     this.router.navigate(['/']);
   }
+
+  get isInvalidLogin() { return this.invalidLogin };
 }

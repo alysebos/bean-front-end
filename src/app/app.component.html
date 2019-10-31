@@ -1,12 +1,11 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <a class="navbar-brand" routerLink="/"><i class="fa fa-paw"></i> Bean</a>
 
-  <ul class="navbar-nav ml-auto" *ngIf="server.isLoggedIn">
+  <ul class="navbar-nav ml-auto" *ngIf="firstName && server.isLoggedIn">
     <li class="nav-item"><span class="nav-link disabled float-right">Welcome back, {{ firstName }}</span></li>
     <li class="nav-item">
       <a (click)="onLogout()" class="nav-link float-right">Logout</a>
     </li>
   </ul>
 </nav>
-
 <router-outlet></router-outlet>
