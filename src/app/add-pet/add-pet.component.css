@@ -1,8 +1,12 @@
 
-input[type="text"], input[type="date"], input[type="number"] {
+input[type="text"], input[type="date"], input[type="number"], select {
     width: 50%;
     min-width: 300px;
     max-width: 600px;
+}
+
+select {
+    margin: auto;
 }
 
 .text-center {
