@@ -31,6 +31,7 @@
                 <div class="my-alerts"
                     *ngIf="weight.invalid && weight.touched">
                     <p *ngIf="weight.errors.required">At the bare minimum, please record {{ pet.name }}'s weight.</p>
+                    <p *ngIf="weight.errors.min">{{ pet.name }} is certainly not a negative weight.</p>
                 </div>
                 <input type="number"
                     formControlName="weight"
@@ -362,7 +363,7 @@
                 <div class="form-group">
                     <label for="legs">Legs
                         <input type="text"
-                            placeholder="90 F"
+                            placeholder="Example: Limping"
                             formControlName="legs"
                             id="legs"
                             class="form-control">

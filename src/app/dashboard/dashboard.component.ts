@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../server.service';
-import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,8 +11,7 @@ export class DashboardComponent implements OnInit {
   pets: any[];
 
   constructor(
-    private server: ServerService,
-    private app: AppComponent
+    private server: ServerService
   ) { }
 
   ngOnInit() {
@@ -28,10 +26,6 @@ export class DashboardComponent implements OnInit {
             }
           }
         );
-  }
-
-  onLogout() {
-    this.app.onLogout();
   }
 
 }

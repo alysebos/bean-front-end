@@ -39,7 +39,7 @@ export class EditCheckupComponent implements OnInit {
             this.form = this.fb.group({
               date: [this.formattedDate, Validators.required],
               vet: [this.checkup.vet],
-              weight: [this.checkup.weight, Validators.required],
+              weight: [this.checkup.weight, [Validators.required, Validators.min(0)]],
               temperatureInput: [this.hasValue('temperature')],
               temperature: [this.checkup.temperature],
               pulseInput: [this.hasValue('pulse')],

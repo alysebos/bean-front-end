@@ -36,7 +36,7 @@ export class AddCheckupComponent implements OnInit {
     this.form = this.fb.group({
       date: ['', Validators.required],
       vet: [false],
-      weight: ['', Validators.required],
+      weight: ['', [Validators.required, Validators.min(0)]],
       temperatureInput: [false],
       temperature: [''],
       pulseInput: [false],

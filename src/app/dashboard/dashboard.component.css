@@ -12,6 +12,10 @@
     font-size: 150%;
 }
 
+.list-group-item-link {
+    cursor: pointer;
+}
+
 h3 {
     margin-top: 15px;
 }
